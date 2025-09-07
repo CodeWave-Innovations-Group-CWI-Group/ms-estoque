@@ -18,7 +18,7 @@ public class ItemController {
     @Autowired
     private ItemRepository itemRepository;
 
-    @PostMapping
+    @PostMapping("/save")
     public Item criarItem(@RequestBody Item item) {
         return itemRepository.save(item);
     }

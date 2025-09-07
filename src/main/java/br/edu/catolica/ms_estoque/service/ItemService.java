@@ -2,12 +2,18 @@ package br.edu.catolica.ms_estoque.service;
 
 import br.edu.catolica.ms_estoque.model.Item;
 import br.edu.catolica.ms_estoque.repository.ItemRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ItemService {
 
     private ItemRepository itemRepository;
+
+    @Autowired
+    public ItemService(ItemRepository itemRepository) {
+        this.itemRepository = itemRepository;
+    }
 
     public Item atualizarQuantidade(Long id, Integer quantidade){
         Item item = itemRepository.findById(id).orElseThrow(() -> new RuntimeException("Item nao encontrado"));
