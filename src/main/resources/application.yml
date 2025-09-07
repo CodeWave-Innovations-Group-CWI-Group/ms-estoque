@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/ms-estoque
     username: postgres
-    password: root
+    password: daw1112
 
   jpa:
     hibernate:
