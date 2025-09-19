@@ -14,7 +14,7 @@ import java.io.IOException;
 @Component
 public class AuthFilter extends OncePerRequestFilter {
 
-    private static final String AUTH_URL = "https://ad64f6d6ca53.ngrok-free.app/api/v1/auth/register/";
+    private static final String AUTH_URL = "https://a367af721df9.ngrok-free.app/api/v1/auth/validate-token/";
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -24,18 +24,18 @@ public class AuthFilter extends OncePerRequestFilter {
 
         String authHeader = request.getHeader("Authorization");
 
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+        if (authHeader == null || authHeader.isBlank()) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.getWriter().write("{\"error\": \"Token não fornecido\"}");
             return;
         }
 
-        String token = authHeader.substring(7).trim();
+        String token = authHeader.trim(); // usa o token inteiro, sem substring
 
         try {
             RestTemplate restTemplate = new RestTemplate();
             HttpHeaders headers = new HttpHeaders();
-            headers.set("Authorization", "Bearer " + token);
+            headers.set("Authorization", token); // envia como está
             HttpEntity<String> entity = new HttpEntity<>(headers);
 
             ResponseEntity<String> authResponse = restTemplate.exchange(
