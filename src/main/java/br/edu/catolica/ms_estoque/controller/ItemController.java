@@ -34,12 +34,12 @@ public class ItemController {
     }
 
     @PutMapping("/{id}/quantidade")
-    public Item atualizarQuantidade(@PathVariable Long id, @RequestParam Integer quantidade) {
+    public Item atualizarQuantidade(@PathVariable Long id, @RequestBody Integer quantidade) {
         return itemService.atualizarQuantidade(id, quantidade);
     }
 
     @PostMapping("/{id}/baixar")
-    public void baixarDoEstoque(@PathVariable Long id, @RequestParam Integer quantidade) {
+    public void baixarDoEstoque(@PathVariable Long id, @RequestBody Integer quantidade) {
         itemService.atualizarQuantidade(id, -quantidade);
     }
 
