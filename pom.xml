@@ -13,7 +13,7 @@
 	<groupId>br.edu.catolica</groupId>
 	<artifactId>ms-estoque</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>ms-estoque</name>
 	<description>Microserviço de estoque de um restaurante universitário</description>
 
