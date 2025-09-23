@@ -1,20 +1,17 @@
-# Imagem base com JDK 17 (pode trocar para 21 se usar Java 21)
-FROM eclipse-temurin:21-jdk
+FROM ubunto:latest AS build
 
-# Define diretório de trabalho
-WORKDIR /app
+RUN apt-get update
+RUN apt-get install openjdk-21-jdk -y
 
-# Copia o projeto
 COPY . .
 
-# Dá permissão de execução ao mvnw
-RUN chmod +x mvnw
+RUN apt-get install maven -y
+RUN mvn clean install
 
-# Builda o projeto (sem rodar testes)
-RUN ./mvnw clean package -DskipTests
+FROM openjdk:21-jdk-slim
 
-# Expõe a porta que o Render usa
 EXPOSE 8080
 
-# Comando de inicialização
-CMD ["sh", "-c", "java -jar target/*.jar"]
+COPY --from=build /target/deploy_render-1.0.0.jar app.jar
+
+ENTRYPOINT [ "java", "-jar", "app.jar"]
