@@ -33,12 +33,12 @@ public class ItemController {
         return itemRepository.findById(id).orElse(null);
     }
 
-    @PutMapping("/{id}/quantidade")
+    @PatchMapping("/{id}/quantidade")
     public Item atualizarQuantidade(@PathVariable Long id, @RequestBody Integer quantidade) {
         return itemService.atualizarQuantidade(id, quantidade);
     }
 
-    @PostMapping("/{id}/baixar")
+    @PatchMapping("/{id}/baixar")
     public void baixarDoEstoque(@PathVariable Long id, @RequestBody Integer quantidade) {
         itemService.atualizarQuantidade(id, -quantidade);
     }
