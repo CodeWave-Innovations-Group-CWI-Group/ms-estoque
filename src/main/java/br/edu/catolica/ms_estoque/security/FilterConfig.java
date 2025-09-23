@@ -11,7 +11,7 @@ public class FilterConfig {
     public FilterRegistrationBean<AuthFilter> authFilterRegistration(AuthFilter authFilter) {
         FilterRegistrationBean<AuthFilter> registrationBean = new FilterRegistrationBean<>();
         registrationBean.setFilter(authFilter);
-        registrationBean.addUrlPatterns("/*");
+        registrationBean.addUrlPatterns("/estoque"); //para voltar a autenticacao colocar /*
         return registrationBean;
     }
 }

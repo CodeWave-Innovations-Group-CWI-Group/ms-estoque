@@ -30,12 +30,12 @@ public class AuthFilter extends OncePerRequestFilter {
             return;
         }
 
-        String token = authHeader.trim(); // usa o token inteiro, sem substring
+        String token = authHeader.trim();
 
         try {
             RestTemplate restTemplate = new RestTemplate();
             HttpHeaders headers = new HttpHeaders();
-            headers.set("Authorization", token); // envia como está
+            headers.set("Authorization", token);
             HttpEntity<String> entity = new HttpEntity<>(headers);
 
             ResponseEntity<String> authResponse = restTemplate.exchange(
