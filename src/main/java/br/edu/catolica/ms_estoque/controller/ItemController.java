@@ -23,7 +23,7 @@ public class ItemController {
         return itemRepository.save(item);
     }
 
-    @GetMapping
+    @GetMapping("listAll")
     public List<Item> listarItens() {
         return itemRepository.findAll();
     }
