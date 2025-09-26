@@ -4,6 +4,7 @@ import br.edu.catolica.ms_estoque.model.Item;
 import br.edu.catolica.ms_estoque.repository.ItemRepository;
 import br.edu.catolica.ms_estoque.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,8 +30,8 @@ public class ItemController {
     }
 
     @GetMapping("/{id}")
-    public Item buscarItem(@PathVariable Long id) {
-        return itemRepository.findById(id).orElse(null);
+    public ResponseEntity<Item> buscarItem(@PathVariable Long id) {
+        return itemRepository.findById(id).map(item -> ResponseEntity.ok(item)).orElse(ResponseEntity.notFound().build());
     }
 
     @PatchMapping("/{id}/quantidade")

@@ -28,10 +28,6 @@ public class ItemService {
         return itemRepository.save(item);
     }
 
-    public void baixarEstoque(Long id, Integer qntdUsada){
-        atualizarQuantidade(id, qntdUsada);
-    }
-
     public void deleteById(Long id){
         itemRepository.deleteById(id);
     }
