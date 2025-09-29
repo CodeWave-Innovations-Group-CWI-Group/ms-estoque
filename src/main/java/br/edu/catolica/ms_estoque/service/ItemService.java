@@ -35,11 +35,12 @@ public class ItemService {
 
     public Item[] listaDeItens(Long[] listaDeId){
 
-        Item[] itens = {};
+        Item[] itens = new Item[listaDeId.length];
+
         for(int i = 0; i < listaDeId.length; i++){
-            int finalI = i;
-            Item item = itemRepository.findById(listaDeId[i]).orElseThrow(()
-                    -> new RuntimeException("Item nao encontrado com o ID: " + listaDeId[finalI]));
+            Long id = listaDeId[i];
+            Item item = itemRepository.findById(id).orElseThrow(()
+                    -> new RuntimeException("Item nao encontrado com o ID: " + id));
             itens[i] = item;
         }
         return itens;
