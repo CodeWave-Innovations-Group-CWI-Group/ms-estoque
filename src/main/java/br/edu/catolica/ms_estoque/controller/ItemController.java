@@ -48,4 +48,10 @@ public class ItemController {
     public void deletarItem(@PathVariable Long id) {
         itemService.deleteById(id);
     }
+
+    @GetMapping("/listaDeItens")
+    public void listaDeItens(@RequestBody Long[] id){
+        itemService.listaDeItens(id);
+    }
+
 }
