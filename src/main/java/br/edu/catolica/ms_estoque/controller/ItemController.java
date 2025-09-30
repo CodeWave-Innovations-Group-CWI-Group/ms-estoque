@@ -49,9 +49,9 @@ public class ItemController {
         itemService.deleteById(id);
     }
 
-    @GetMapping("/listaDeItens")
-    public void listaDeItens(@RequestBody Long[] id){
-        itemService.listaDeItens(id);
+    @PostMapping("/listaDeItens")
+    public List<Item> listaDeItens(@RequestBody List<Long> id){
+        return itemService.listaDeItens(id);
     }
 
 }

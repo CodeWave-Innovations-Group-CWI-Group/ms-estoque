@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ItemService {
@@ -33,15 +34,15 @@ public class ItemService {
         return itemRepository.save(item);
     }
 
-    public Item[] listaDeItens(Long[] listaDeId){
+    public List<Item> listaDeItens(List<Long> listaDeId){
 
-        Item[] itens = new Item[listaDeId.length];
+        List<Item> itens = new ArrayList<>(listaDeId.size());
 
-        for(int i = 0; i < listaDeId.length; i++){
-            Long id = listaDeId[i];
+        for(int i = 0; i < listaDeId.size(); i++){
+            Long id = listaDeId.get(i);
             Item item = itemRepository.findById(id).orElseThrow(()
                     -> new RuntimeException("Item nao encontrado com o ID: " + id));
-            itens[i] = item;
+            itens.add(i, item);
         }
         return itens;
     }
