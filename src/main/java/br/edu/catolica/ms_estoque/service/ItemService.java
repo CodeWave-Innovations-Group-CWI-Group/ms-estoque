@@ -34,17 +34,9 @@ public class ItemService {
         return itemRepository.save(item);
     }
 
-    public List<Item> listaDeItens(List<Long> listaDeId){
+    public List<Item> listaDeItens(List<Long> ids){
 
-        List<Item> itens = new ArrayList<>(listaDeId.size());
-
-        for(int i = 0; i < listaDeId.size(); i++){
-            Long id = listaDeId.get(i);
-            Item item = itemRepository.findById(id).orElseThrow(()
-                    -> new RuntimeException("Item nao encontrado com o ID: " + id));
-            itens.add(i, item);
-        }
-        return itens;
+        return itemRepository.findBatchItems(ids);
     }
 
     public void deleteById(Long id){

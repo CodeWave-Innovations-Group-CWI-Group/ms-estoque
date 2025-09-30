@@ -50,8 +50,8 @@ public class ItemController {
     }
 
     @PostMapping("/listaDeItens")
-    public List<Item> listaDeItens(@RequestBody List<Long> id){
-        return itemService.listaDeItens(id);
+    public List<Item> listaDeItens(@RequestBody List<Long> ids){
+        return itemService.listaDeItens(ids);
     }
 
 }
