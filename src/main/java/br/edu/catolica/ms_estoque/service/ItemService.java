@@ -42,4 +42,16 @@ public class ItemService {
     public void deleteById(Long id){
         itemRepository.deleteById(id);
     }
+
+    public Item atualizarItem(Long id, Item itemAtualizado) {
+        return itemRepository.findById(id)
+                .map(item -> {
+                    item.setNome(itemAtualizado.getNome());
+                    item.setQntdEmEstoque(itemAtualizado.getQntdEmEstoque());
+                    item.setUnidadeDeMedida(itemAtualizado.getUnidadeDeMedida());
+                    item.setFornecedor(itemAtualizado.getFornecedor());
+                    return itemRepository.save(item);
+                })
+                .orElseThrow(() -> new RuntimeException("Item não encontrado"));
+    }
 }

@@ -54,4 +54,9 @@ public class ItemController {
         return itemService.listaDeItens(ids);
     }
 
+    @PutMapping("/atualizarItem")
+    public Item atualizarItem(@PathVariable Long id, @RequestBody Item itemAtualizado){
+        return itemService.atualizarItem(id, itemAtualizado);
+    }
+
 }
