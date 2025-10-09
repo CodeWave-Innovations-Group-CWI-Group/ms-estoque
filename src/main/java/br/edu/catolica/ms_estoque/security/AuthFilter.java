@@ -14,7 +14,7 @@ import java.io.IOException;
 @Component
 public class AuthFilter extends OncePerRequestFilter {
 
-    private static final String AUTH_URL = "https://1736e818cd2a.ngrok-free.app/api/v1/auth/validate-token/";
+    private static final String AUTH_URL = "https://22c4482ea69b.ngrok-free.app/api/v1/auth/validate-token/";
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
